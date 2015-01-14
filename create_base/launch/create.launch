@@ -1,5 +1,6 @@
 <launch>
 	<arg name="ns" default="create"/>
+	<arg name="pose" default=""/>
 	
 	<include file="$(find create_control)/launch/control.launch">
 		<arg name="ns" value="$(arg ns)"/>
@@ -10,5 +11,5 @@
 	</include>
 
 	<node name="spawn_husky_model" pkg="gazebo_ros" type="spawn_model" ns="$(arg ns)"
-		args="$(optenv ROBOT_INITIAL_POSE) -unpause -urdf -param /$(arg ns)/robot_description -model $(arg ns)"/>
+		args="$(arg pose) -unpause -urdf -param /$(arg ns)/robot_description -model $(arg ns)"/>
 </launch>
