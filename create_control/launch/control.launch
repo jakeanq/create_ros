@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+	<rosparam command="load" file="$(find create_control)/config/control.yaml" />
+	<node name="controller_spawner" pkg="controller_manager" type="spawner"
+		args="create_joint_publisher create_velocity_controller"/>
+	<node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization" />
+</launch>

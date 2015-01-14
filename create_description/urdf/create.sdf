@@ -1,0 +1,171 @@
+<sdf version='1.4'>
+  <model name='create'>
+    <link name='base'>
+      <pose>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.001453 -0.000453 0.029787 0 -0 0</pose>
+        <mass>2.234</mass>
+        <inertia>
+          <ixx>0.05864</ixx>
+          <ixy>0.000124</ixy>
+          <ixz>0.000615</ixz>
+          <iyy>0.058786</iyy>
+          <iyz>1.4e-05</iyz>
+          <izz>1.53244</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_collision'>
+        <pose>0 0 0.0478 0 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.061163</length>
+            <radius>0.016495</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <collision name='base_collision_base_1'>
+        <pose>0.13 0 0.017 0 1.5707 1.5707</pose>
+        <geometry>
+          <sphere>
+            <radius>0.018</radius>
+          </sphere>
+        </geometry>
+      </collision>
+      <collision name='base_collision_base_2'>
+        <pose>-0.13 0 0.017 0 1.5707 1.5707</pose>
+        <geometry>
+          <sphere>
+            <radius>0.015</radius>
+          </sphere>
+        </geometry>
+      </collision>
+      <visual name='base_visual'>
+        <pose>0 0 0.0478 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://create_description/meshes/create_body.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='base_visual_base_1'>
+        <pose>0.13 0 0.017 0 1.5707 1.5707</pose>
+        <geometry>
+          <sphere>
+            <radius>0.009</radius>
+          </sphere>
+        </geometry>
+      </visual>
+      <visual name='base_visual_base_2'>
+        <pose>-0.13 0 0.017 0 1.5707 1.5707</pose>
+        <geometry>
+          <sphere>
+            <radius>0.0075</radius>
+          </sphere>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <link name='left_wheel'>
+      <pose>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>0.01</mass>
+        <inertia>
+          <ixx>0.001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.001</iyy>
+          <iyz>0</iyz>
+          <izz>0.001</izz>
+        </inertia>
+      </inertial>
+      <collision name='left_wheel_collision'>
+        <pose>0 0 0 0 1.5707 1.5707</pose>
+        <geometry>
+          <cylinder>
+            <length>0.023</length>
+            <radius>0.033</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='left_wheel_visual'>
+        <pose>0 0 0 0 1.5707 1.5707</pose>
+        <geometry>
+          <cylinder>
+            <length>0.023</length>
+            <radius>0.033</radius>
+          </cylinder>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='left_wheel' type='revolute'>
+      <child>left_wheel</child>
+      <parent>base</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+    <link name='right_wheel'>
+      <pose>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>0.01</mass>
+        <inertia>
+          <ixx>0.001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.001</iyy>
+          <iyz>0</iyz>
+          <izz>0.001</izz>
+        </inertia>
+      </inertial>
+      <collision name='right_wheel_collision'>
+        <pose>0 0 0 0 1.5707 1.5707</pose>
+        <geometry>
+          <cylinder>
+            <length>0.023</length>
+            <radius>0.033</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='right_wheel_visual'>
+        <pose>0 0 0 0 1.5707 1.5707</pose>
+        <geometry>
+          <cylinder>
+            <length>0.023</length>
+            <radius>0.033</radius>
+          </cylinder>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <joint name='right_wheel' type='revolute'>
+      <child>right_wheel</child>
+      <parent>base</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics/>
+      </axis>
+    </joint>
+  </model>
+</sdf>
