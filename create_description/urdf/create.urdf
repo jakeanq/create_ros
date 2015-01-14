@@ -236,12 +236,12 @@
       </geometry>
     </visual>
   </link>
-  <joint name="left_wheel" type="continuous">
+  <joint name="left_wheel_joint" type="continuous">
     <parent link="base"/>
     <child link="left_wheel"/>
     <axis xyz="0 1 0"/>
   </joint>
-  <joint name="right_wheel" type="continuous">
+  <joint name="right_wheel_joint" type="continuous">
     <parent link="base"/>
     <child link="right_wheel"/>
     <axis xyz="0 1 0"/>
@@ -251,7 +251,7 @@
     <actuator name="left_wheel_motor">
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
-    <joint name="left_wheel">
+    <joint name="left_wheel_joint">
       <hardwareInterface>VelocityJointInterface</hardwareInterface>
     </joint>
   </transmission>
@@ -260,8 +260,13 @@
     <actuator name="right_wheel_motor">
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
-    <joint name="right_wheel">
+    <joint name="right_wheel_joint">
       <hardwareInterface>VelocityJointInterface</hardwareInterface>
     </joint>
   </transmission>
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/create</robotNamespace>
+    </plugin>
+  </gazebo>
 </robot>
