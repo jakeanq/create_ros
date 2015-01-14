@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
 	<arg name="ns" default="create"/>
-	<param name="/create/robot_description"
-		command="$(find xacro)/xacro.py '$(find create_description)/urdf/create.urdf.xacro namespace:=$(arg ns)'" />
+	<param name="/$(arg ns)/robot_description"
+		command="$(find xacro)/xacro.py '$(find create_description)/urdf/create.urdf.xacro' 'namespace:=$(arg ns)'" />
 	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" ns="$(arg ns)" />
 </launch>
