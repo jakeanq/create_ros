@@ -27,18 +27,20 @@
         <sphere radius="0.018000"/>
       </geometry>
       <gazebo>
-      <surface>
-	      <friction>
-	      <ode>
-            <mu>0</mu>
-            <mu2>0</mu2>
-            <fdir1>0 0 0</fdir1>
-            <slip1>0</slip1>
-            <slip2>0</slip2>
-          </ode>
-        </friction>
-      </surface>
-    </gazebo>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0</mu>
+              <mu2>0</mu2>
+              <fdir1>0 0 0</fdir1>
+              <slip1>0</slip1>
+              <slip2>0</slip2>
+            </ode>
+          </friction>
+        </surface>
+        <mu>0</mu>
+        <mu2>0</mu2>
+      </gazebo>
     </collision>
     <visual name="front_wheel_visual">
       <origin xyz="0.130000 0 0.017000" rpy="0 1.570700 1.570700"/>
@@ -52,17 +54,21 @@
       <geometry>
         <sphere radius="0.015000"/>
       </geometry>
-      <surface>
-        <friction>
-          <ode>
-            <mu>0</mu>
-            <mu2>0</mu2>
-            <fdir1>0 0 0</fdir1>
-            <slip1>0</slip1>
-            <slip2>0</slip2>
-          </ode>
-        </friction>
-      </surface>
+      <gazebo>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0</mu>
+              <mu2>0</mu2>
+              <fdir1>0 0 0</fdir1>
+              <slip1>0</slip1>
+              <slip2>0</slip2>
+            </ode>
+          </friction>
+        </surface>
+        <mu>0</mu>
+        <mu2>0</mu2>
+      </gazebo>
     </collision>
     <visual name="rear_wheel_visual">
       <origin xyz="-0.130000 0 0.017000" rpy="0 1.570700 1.570700"/>
@@ -163,16 +169,17 @@
     </sensor>-->
   </link>
   <link name="left_wheel">
-    <origin xyz="0 0.130000 0.032000" rpy="0 0 0"/>
     <inertial>
+      <origin xyz="0 0.130000 0.032000" rpy="0 0 0"/>
       <inertia ixx="0.001000" ixy="0" ixz="0" iyy="0.001000" iyz="0" izz="0.001000"/>
       <mass value="0.010000"/>
     </inertial>
     <collision name="collision">
-      <origin xyz="0 0 0" rpy="0 1.570700 1.570700"/>
+      <origin xyz="0 0.13 0.032" rpy="0 1.570700 1.570700"/>
       <geometry>
         <cylinder radius="0.033000" length="0.023000"/>
       </geometry>
+      <gazebo>
       <surface>
         <friction>
           <ode>
@@ -184,25 +191,29 @@
           </ode>
         </friction>
       </surface>
+      <mu>10</mu>
+      <mu2>10</mu2>
+    </gazebo>
     </collision>
     <visual name="visual">
-      <origin xyz="0 0 0" rpy="0 1.570700 1.570700"/>
+      <origin xyz="0 0.13 0.032" rpy="0 1.570700 1.570700"/>
       <geometry>
         <cylinder radius="0.033000" length="0.023000"/>
       </geometry>
     </visual>
   </link>
   <link name="right_wheel">
-    <origin xyz="0 -0.130000 0.032000" rpy="0 0 0"/>
     <inertial>
+      <origin xyz="0 -0.130000 0.032000" rpy="0 0 0"/>
       <inertia ixx="0.001000" ixy="0" ixz="0" iyy="0.001000" iyz="0" izz="0.001000"/>
       <mass value="0.010000"/>
     </inertial>
     <collision name="collision">
-      <origin xyz="0 0 0" rpy="0 1.570700 1.570700"/>
+      <origin xyz="0 -0.13 0.032" rpy="0 1.570700 1.570700"/>
       <geometry>
         <cylinder radius="0.033000" length="0.023000"/>
       </geometry>
+      <gazebo>
       <surface>
         <friction>
           <ode>
@@ -214,20 +225,23 @@
           </ode>
         </friction>
       </surface>
+      <mu>10</mu>
+      <mu2>10</mu2>
+    </gazebo>
     </collision>
     <visual name="visual">
-      <origin xyz="0 0 0" rpy="0 1.570700 1.570700"/>
+      <origin xyz="0 -0.13 0.032" rpy="0 1.570700 1.570700"/>
       <geometry>
         <cylinder radius="0.033000" length="0.023000"/>
       </geometry>
     </visual>
   </link>
-  <joint name="left_wheel" type="continuous">
+  <joint name="left_wheel_joint" type="continuous">
     <parent link="base"/>
     <child link="left_wheel"/>
     <axis xyz="0 1 0"/>
   </joint>
-  <joint name="right_wheel" type="continuous">
+  <joint name="right_wheel_joint" type="continuous">
     <parent link="base"/>
     <child link="right_wheel"/>
     <axis xyz="0 1 0"/>
@@ -237,7 +251,7 @@
     <actuator name="left_wheel_motor">
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
-    <joint name="left_wheel">
+    <joint name="left_wheel_joint">
       <hardwareInterface>VelocityJointInterface</hardwareInterface>
     </joint>
   </transmission>
@@ -246,8 +260,13 @@
     <actuator name="right_wheel_motor">
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
-    <joint name="right_wheel">
+    <joint name="right_wheel_joint">
       <hardwareInterface>VelocityJointInterface</hardwareInterface>
     </joint>
   </transmission>
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/$(arg namespace)</robotNamespace>
+    </plugin>
+  </gazebo>
 </robot>
