@@ -12,7 +12,7 @@
     <collision name="base_collision">
       <origin xyz="0 0 0.047800" rpy="0 0 0"/>
       <geometry>
-        <cylinder radius="0.016495" length="0.061163"/>
+        <cylinder radius="0.16495" length="0.061163"/>
       </geometry>
     </collision>
     <visual name="base_visual">
@@ -26,21 +26,6 @@
       <geometry>
         <sphere radius="0.018000"/>
       </geometry>
-      <gazebo>
-        <surface>
-          <friction>
-            <ode>
-              <mu>0</mu>
-              <mu2>0</mu2>
-              <fdir1>0 0 0</fdir1>
-              <slip1>0</slip1>
-              <slip2>0</slip2>
-            </ode>
-          </friction>
-        </surface>
-        <mu>0</mu>
-        <mu2>0</mu2>
-      </gazebo>
     </collision>
     <visual name="front_wheel_visual">
       <origin xyz="0.130000 0 0.017000" rpy="0 1.570700 1.570700"/>
@@ -54,21 +39,6 @@
       <geometry>
         <sphere radius="0.015000"/>
       </geometry>
-      <gazebo>
-        <surface>
-          <friction>
-            <ode>
-              <mu>0</mu>
-              <mu2>0</mu2>
-              <fdir1>0 0 0</fdir1>
-              <slip1>0</slip1>
-              <slip2>0</slip2>
-            </ode>
-          </friction>
-        </surface>
-        <mu>0</mu>
-        <mu2>0</mu2>
-      </gazebo>
     </collision>
     <visual name="rear_wheel_visual">
       <origin xyz="-0.130000 0 0.017000" rpy="0 1.570700 1.570700"/>
@@ -179,21 +149,6 @@
       <geometry>
         <cylinder radius="0.033000" length="0.023000"/>
       </geometry>
-      <gazebo>
-      <surface>
-        <friction>
-          <ode>
-            <mu>10</mu>
-            <mu2>10</mu2>
-            <fdir1>0 0 0</fdir1>
-            <slip1>0</slip1>
-            <slip2>0</slip2>
-          </ode>
-        </friction>
-      </surface>
-      <mu>10</mu>
-      <mu2>10</mu2>
-    </gazebo>
     </collision>
     <visual name="visual">
       <origin xyz="0 0.13 0.032" rpy="0 1.570700 1.570700"/>
@@ -213,21 +168,7 @@
       <geometry>
         <cylinder radius="0.033000" length="0.023000"/>
       </geometry>
-      <gazebo>
-      <surface>
-        <friction>
-          <ode>
-            <mu>10</mu>
-            <mu2>10</mu2>
-            <fdir1>0 0 0</fdir1>
-            <slip1>0</slip1>
-            <slip2>0</slip2>
-          </ode>
-        </friction>
-      </surface>
-      <mu>10</mu>
-      <mu2>10</mu2>
-    </gazebo>
+
     </collision>
     <visual name="visual">
       <origin xyz="0 -0.13 0.032" rpy="0 1.570700 1.570700"/>
@@ -268,5 +209,17 @@
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
       <robotNamespace>/$(arg namespace)</robotNamespace>
     </plugin>
+  </gazebo>
+  <gazebo reference="base">
+    <mu1>0</mu1>
+    <mu2>0</mu2>
+  </gazebo>
+  <gazebo reference="left_wheel">
+    <mu1>10</mu1>
+    <mu2>10</mu2>
+  </gazebo>
+  <gazebo reference="right_wheel">
+    <mu1>10</mu1>
+    <mu2>10</mu2>
   </gazebo>
 </robot>
