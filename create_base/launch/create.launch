@@ -10,6 +10,6 @@
 		<arg name="ns" value="$(arg ns)"/>
 	</include>
 
-	<node name="spawn_husky_model" pkg="gazebo_ros" type="spawn_model" ns="$(arg ns)"
+	<node name="spawn_create_model" pkg="gazebo_ros" type="spawn_model" ns="$(arg ns)"
 		args="$(arg pose) -unpause -urdf -param /$(arg ns)/robot_description -model $(arg ns)"/>
 </launch>

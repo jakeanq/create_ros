@@ -15,6 +15,19 @@
         <cylinder radius="0.16495" length="0.061163"/>
       </geometry>
     </collision>
+
+    <collision name="contact_sensor">
+      <origin xyz="0 0 0.047800" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.16495" length="0.061163"/>
+      </geometry>
+    </collision>
+    <sensor name='my_sensor' type='contact'>
+      <contact>
+        <collision>contact_sensr</collision>
+      </contact>
+    </sensor>
+
     <visual name="base_visual">
       <origin xyz="0 0 0.047800" rpy="0 0 0"/>
       <geometry>
